@@ -1,0 +1,61 @@
+﻿@model IEnumerable<THWebB3.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách </h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tittle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageCover)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Author)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tittle)
+    </td>
+    <td>
+        <textarea cols="40" rows="5" disabled>@Html.DisplayFor(modelItem => item.Description)</textarea>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ImageCover)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+    </td>
+    <td>
+        <a href="@Url.Action("Buy","Books", new { id = item.Id})" class="btn btn-primary">Mua</a>
+    </td>
+</tr>
+}
+
+</table>
